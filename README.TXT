@@ -1,201 +1,155 @@
-RELEASE NOTES: OpenJAUSv3.3 (07/10/08)
+CATVehicle REU at the University of Arizona: ROS-to-JAUS
 ==========================================
 
-OpenJAUSv3.3 beta is an open source implementation of the JAUS Reference
-Architecture Version 3.3. The latest code, documentation and support groups 
-are available at the OpenJAUS web site:  http://www.openjaus.com/.
+This folder is a collection of components and nodes created on the ROS and
+JAUS architectures used to build a bridge for effective bidirectional
+communication between the two architectures.
 
-This release contains the following projects:
+This project contains the following folders:
 
-libjaus:		A C99 compliant library that contains JAUS constructs, data 
-				types and messages.
-libopenJaus:	A C/C++ library containing a runtime JAUS node manager library,
-				node manager communication interface, and component framework 
-				library.
-ojNodeManager:	The OpenJAUS node manager executable with text interface
-ojVehicleSim:	A collection of JAUS components that work together to simulate
-				a JAUS ground vehicle subsystem. These components provide a set
-				of services that are commonly used in real ground vehicle
-				implementations.
+beginner_tutorials:	
+	A ROS stack containing the nodes created and used for the bridge.
+lib:				
+	A collection of supporting libraries for the JAUS components used in this folder.
+libazcar:			
+	Another collection of supporting libraries for JAUS, in this case relevant specifically to the car.
+libtutorial:		
+	Supporting libraries for the tutorial components around which some of the bridges were constructed. May not be used.
+oj2torial:			
+	The original number-passing JAUS tutorial component, without ROS.
+ojComfortMotion:	
+	A JAUS component designed to operate an autonomous car in a smooth
+	turning path. This component may have make issues since it is
+	generally to be run from outside this folder, and such is not
+	expected to be built with the rest of the folders in simpleSim.
+ojGazeboBridge:		
+	The most significant bridge, this component allows for the
+	ojComfortMotion component to operate a car simulated in Gazebo.
+ojROSComfort:		
+	Another bridge component, this is a variant of the ojComfortController
+	which performs the same purpose but offloads some computation to ROS.
+ojTutorial:			
+	A variant of the ojTutorial number-passing JAUS component which is integrated with ROS and accepts input from a ROS publishing node to change the number being passed as well as reporting that number
+	to a ROS topic.
+ojVehicleSim:		
+	A collection of JAUS components that work together to simulate a JAUS ground vehicle subsystem. These components provide a set of services that are commonly used in real ground vehicle
+	implementations.
 
-If you experience problems in compiling or developing with this code, please
-read the tutorials and online FAQ before contacting the OpenJAUS development
-group. Please attempt to locate where the problem exists and determine how the
-problem can be replicated before seeking additional support. Code patches can be
-uploaded at the OpenJAUS web site: http://www.openjaus.com.
-
+Ownership
+-----------------------------
+This code is a combination of multiple open source libraries that have been extended
+and combined, so ownership becomes confusing. For the purpose of clarity, code that
+was created exclusively for the ROS to JAUS project has been marked with HTML style
+tags like so: <ROS2JAUS>. Code outside of these tags was created by the writers of
+openJAUS or by Sean Whitsitt at the University of Arizona. The code within the tags
+was written by Ethan Rabb, with help from project partners Alex Warren and PJ Morley.
 
 Target Operating Environment:
 -----------------------------
 
-	This software is designed to be cross platform compatible. The code base has 
-been tested on a variety of operating systems and development environments including: 
-Linux (Ubuntu & Fedora Core) w/gnu toolchain, Mac OS X w/gnu toolchain, and Windows w/MS 
-Visual Studio. All test machines have been little endian byte order based. The libjaus 
-library is C99 compliant and should be compatible with any standard C compiler for any 
-processing platform. The libopenJaus library has some operating system dependent 
-abstractions, which may require different implementations for systems not using Linux 
-or Windows. The library was implemented with POSIX standard programming interfaces where 
-applicable, to provide a more standardized approach to multi-threading and mutex 
-implementation.
-
-
-Installation (GNU Toolchain / Linux & Macintosh OS X):
-------------------------------------------------------
-
-Requirements:
-	make
-	gcc
-	g++
-
-To build the library and executable code:
-	Execute the command: "make" in the root OpenJAUSv3.3.0 directory. The make
-command will use the Makefile found in that directory to recursively make each
-of the subprojects. Individual Makefiles are located in each subproject
-directory to allow for building one project at a time if desired.
+This software has been tested only on an Ubuntu 12.04 system with ROS groovy installed
+as well as OpenJAUS. Both ROS and JAUS are designed to be compatible with multiple
+platforms, although ROS runs only on Linux systems.
 
 Installation:
-	It is up to the individual developer to decide how to link their code with
-the OpenJAUS libraries. Some developers may prefer to install the OpenJAUS
-header files and libraries to globally accessible directories. For example, on a
-Linux system: /usr/include/ and /usr/lib/. To minimize system invasiveness, 
-OpenJAUS  does not install itself into system directories, rather, all code and 
-binaries remain in the folders included in the release download.
+-----------------------------
 
-	To execute code developed with these libraries it is recommended that the
-developer configure the dynamic linker runtime bindings to reference the 
-OpenJAUS library directories /libjaus/lib/ and /libopenJaus/lib/. This is done
-by editing the systems ld.so.conf (most likely located at /etc/ld.so.conf) to
-include these directories and then by running the command: "ldconfig". Another 
-option to this method would be to simply include the files libjaus.so and 
-libopenJaus.so in the executable's working directory.
+It is first necessary to install both ROS groovy and OpenJAUS. Both are open-source and
+installation instructions can be found online, at www.openjaus.com and www.ros.org.
 
-	*Note: The default build of the libraries includes all symbols and debug 
-information within the shared object (.so) files. This is to facilitate
-efficient  development and use of a run-time debugger. To reduce the size of the
-installed  libraries, the information can be removed by using the "strip"
-command. 
+Assuming these are installed, you must also set your ROS_PACKAGE_PATH environment
+variable to include the path to both the simpleSim folder and the beginner_tutorials
+folder.
 
+At this point, you should be able to "rosmake beginner_tutorials", which will create
+executables for the necessary ROS components.
 
-Installation (Microsoft Visual Studio / Windows):
-------------------------------------------------------
+To make the JAUS and Bridge components, navigate to the simpleSim directory and type
+these commands:
+	mkdir build
+	cd build
+	cmake ..
+	make -j
 
-Requirements:
-	Microsoft Visual Studio
-	Pthreads-win32 (included in distribution)
-	pdcurses (included in distribution)
+At this point all executables should be created and you should be ready to test the code.
 
-To build the library and executable code:
+Testing:
+-----------------------------
+Any time you would like to test a ROS node, you must run roscore.
+Any time you would like to test a JAUS component, you must be running the ojNodeManager
+component, which is included within openJAUS.
 
-In the top level directory, open the Microsoft Visual Studio solution 
-file "OpenJAUSv3.3.0.sln." This solution contains 4 individual projects: 
-libjaus, libopenJaus, ojNodeManager and ojVehicleSim. These projects correspond 
-to the descriptions above. Once open, the solution should be able to be 
-built. Each project has the appropriate dependencies setup using relative paths, 
-therefore it should compile for the developer in any configuration. Also, project 
-references have been setup, so a referenced code base will be compiled prior to 
-the compilation of any child project.
+In general, ROS executables can be run with "rosrun [NAME OF NODE]"
+In general, JAUS executables can be run by navigating to the folder for the executable
+	(for example, navigating within the ojVehicleSim folder)
+and then typing the command "../build/[COMPONENT NAME]/[EXECUTABLE NAME]"
+	(for example, "../build/ojVehicleSim/ojVehicleSim" since in this case the component
+	and the executable have the same name)
 
-Once built, the ojNodeManager should run in a console window if it is set
-as the default project. Ensure that the nodeManager.conf file is configured correctly.
-The ojVehicleSim should run as well if it is set to the default project, however it 
-is important that the ojNodeManager be running first.
+There are three bridges that can be tested with the code available in this folder. To do
+this, you will generally need to run multiple components and nodes. I will outline those
+here.
 
-The libraries libjaus and libopenJaus can be linked against other projects using 
-the .lib files. To run projects built against them, ensure the appropriate .dll 
-files are available either locally or globally on the system.
+The Tutorial Bridge:
+	This bridge will showcase simple bidirectional communication between ROS and JAUS using
+	integers. 
 
-*Note: Use of these libraries has only been tested in the Debug configuration 
-to date. This is due to the added value of retaining debug information for developers 
-of both the OpenJAUS code base and applications based upon that. The creation of release 
-targets, if desired, is left up to the individual developer. 
+	To run the bridge, first run both the ojTutorial and oj2Torial components.
 
+	Next, run the listenerInt ROS node. You should now see that whatever integer the two
+	tutorial components are printed is also being printed by the listener. 
 
-Configuring and Running the Node Manager:
------------------------------------------
+	Last, run the talkerInt ROS node. 
 
-	The node manager executable is currently designed to require manual
-configuration. This means the user must edit the text file nodeManager.conf to
-enter the appropriate JAUS identification numbers and names, and enter the 
-correct IP addresses for the intended hardware communication interfaces. The
-user is also required to configure the node manager to enable or disable node
-level and subsystem level communication. These configurations will vary 
-depending on the intended design of the JAUS system on which the node manager is
-being used. Examples of different JAUS system setups are beyond the scope of 
-this document. The user is encouraged to read the JAUS reference architecture
-and online OpenJAUS tutorials for a more detailed explanation.
+	You should now see that the number passing components
+	will repeatedly update the number being passed to whatever number is being published 
+	by the talker.
 
-Format:
-	The nodeManager.conf file is made up of section tags and key - value pairs.
-The tags are identified within straight braces, ex: "[SECTION]". The key value
-pairs are delimited by a colon and a space character, ex: "key: value".
+The Comfort Bridge:
+	This bridge shows rapid interaction with a ROS node and a JAUS component while both are
+	working at heavy computation.
 
-	To configure the JAUS node manager properties, edit the "SubsystemId" and
-"NodeId" values found under the [JAUS] section tag. Each node manager on a 
-subsystem's node network should be configured with a unique NodeId number. 
-Likewise each subsystem on a network of JAUS subsystems should have a unique
-SubsystemId number. Failure to make these values unique results in erratic and
-undefined behavior when multiple node managers are running at the same time. 
-Only one node manager process should be run at any given time on a single node.
-	Set the "Subsystem_Identification" and "Node_Identification" values to any
-text string that you would like for your particular system setup. These values
-are not required to be unique, as they are only used for text description.
+	To run the bridge, first run the ojVehicleSim component.
 
-	To configure communication interface settings the user is only required to
-edit the [Node_Communications] and [Subsystem_Communications] sections. By 
-default, component communications are always on and the configuration needs to 
-be kept fixed to use the loopback IP address 127.0.0.1. 
-	Each communications section has one or more sets of transport interfaces
-settings, for example "JAUS_UDP" and "OpenJAUS_UDP". This allows for multiple
-transport interfaces to be used at a given communications level (component,
-node, or subsystem). At present only the JAUS_UDP interface type is used at the
-node and component level. However, this allows for other common transport types
-such as TCP or Serial to be included in the future.
-	The user has the option to enable/disable a given transport interface, or
-enable/disable an entire level of communication either node or subsystem. The
-node manager will startup a transport interface if both it and its 
-communications level is enabled. To enable a communications level, simply set
-the value of the "Enabled" key to "true". To disable a level, set the value to 
-"false". These values are case sensitive, ex: "TRUE" or "True" would not work.
-	When each JAUS_UDP interface starts, it attempts to open the network
-interface specified with the user configured IP address. If such an interface
-exists on the system, the node manager will open the JAUS port 3794 on that 
-interface. If not, the node manager will fail at startup and an error message
-will appear. To configure each JAUS_UDP interface simply set the key 
-"JAUS_UDP_IP" value to the IP address of the network interface that you would
-like it to use. The remaining key values should be left configured as in the
-release download. Changing these values will lead to undefined behavior. They
-are included only for completeness, and allow for future changes to be made if
-necessary.
+	Next, run the steeringControl ROS node. This will activate the service which will do the
+	calculation for controlling the car steering.
 
+	Finally, run the ojROSComfort component. 
 
-Further Information:
---------------------
-Tutorials: http://www.openjaus.com/tutorials.html
-Forums: http://www.openjaus.com/trac/openjaus/discussion
-Support contracting: 
+	You should see the vehicle simulator enact a
+	series of throttle, brake, and steering values that correspond with a smooth turn
+	to the right. If you have access to a working ojComfortMotion component, you might want
+	to run that node beforehand for comparison.
 
-Known Issues:
--------------
+The Gazebo Bridge:
+	This bridge will showcase full multifaceted communication for operating a simulated
+	vehicle in the ROS simulator Gazebo using the JAUS comfort controller component.
 
-*  There is no standalone API documentation, which describes all data
-   structures, functions, or default behavior. Please read the tutorials for 
-   detailed information on how to perform common tasks. The header files are 
-   organized by function breakdown and allow for easy access to data structure
-   definitions and function prototypes. Often the functions you seek can be
-   found quickly by browsing the include/ directories.
+	To run the bridge, first run the talker and wrenchTalker ROS nodes. These will spoof
+	velocity and wrench information from Gazebo, unless you have a working implementation
+	of a simulated car in Gazebo, in which case these nodes are not necessary.
 
-Copyright Notices
------------------
+	Next, run the ojGazeboBridge component. The bridge will begin passing any messages it
+	recieves to the appropriate recipients.
 
-Portions of the Windows distribution are based on pdcurses and Pthreads-win32. 
-These binaries packages have their own copyright. They are redistributed with the 
-OpenJAUS codebase as a convenience to developers. More information about these 
-packages can be found on their respective websites below:
+	Finally, run the comfort controller. This can be done most easily with a traditional
+	ojComfortController component, but the one included within simpleSim, as discussed,
+	may not compile easily. The ojROSComfort component can be used here, so long as you
+	run the steeringControl ROS node before running ojROSComfort.
 
-Pthreads-win32: http://sourceware.org/pthreads-win32/
-pdcurses: http://pdcurses.sourceforge.net/
+	If you are using a Gazebo simulated vehicle, you should now see it follow the path
+	dictated by the comfort controller. If not, the results will not be as clear, but using
+	the ROS methods for printing topics or node structures you should be able to see that
+	the bridge is publishing data from the comfort controller node to ROS.
 
-The remainder of the code is copyright OpenJAUS.com and is distributed under the 
-BSD license. See the LICENSE file for details.
+More Information
+-----------------------------
+For more information about this project, consult these websites:
+http://www2.engr.arizona.edu/~sprinkjm/research/catvehicle2013/index.php/ROS2JAUS/HomePage
+http://www2.engr.arizona.edu/~sprinkjm/research/catvehicle2013/index.php/Ethan/HomePage
+http://catvehicle.arizona.edu/
 
+Also, the previously listed home pages for documentation on ROS and openJAUS:
+www.ros.org, www.openjaus.com
+
+The paper written on the content of this project is included within the simpleSim folder as well.

@@ -19,6 +19,7 @@ typedef struct {
 	JausByte instance;
 	JausInteger limit;
 	JausBoolean running;
+//<ROS2JAUS>
 	JausMessage reportVelocity;
 	JausMessage reportWrench;
 	bool gotVelocity;
@@ -30,8 +31,10 @@ typedef struct {
 	ros::Subscriber *velocitySub;
 	int numReceived;
 	int numReturned;
+//<ROS2JAUS>
 } TutorialData;
 
+//<ROS2JAUS>
 void sendServiceMessage( JausMessage message, OjCmpt cmpt );
 
 class ROSComponent {
@@ -40,13 +43,9 @@ class ROSComponent {
 		
 		void reportVelocity(const std_msgs::Float64::ConstPtr& msg)
 		{
-			//printf("velocity callback\n");
 			//create msg of type JAUS_REPORT_VELOCITY_STATE
 			ReportVelocityStateMessage message;
 			message = reportVelocityStateMessageCreate();
-			//data = (TutorialData *)ojCmptGetUserData(*cmpt);
-			//populate with data from msg
-			//printf("populating message\n");
 			message->velocityXMps = msg->data;
 			message->velocityYMps = 0;
 			message->velocityZMps = 0;
@@ -63,7 +62,7 @@ class ROSComponent {
 
 		void reportWrench(const beginner_tutorials::wrenchData::ConstPtr& msg)
 		{
-			//printf("report wrench callback\n");
+			//create REPORT_WRENCH_EFFORT message to send to JAUS
 			ReportWrenchEffortMessage message;
 			message = reportWrenchEffortMessageCreate();
 			message->propulsiveLinearEffortXPercent = msg->throttle;
@@ -75,6 +74,7 @@ class ROSComponent {
 			data->gotWrench = true;
 		}
 };
+//<ROS2JAUS>
 
 
 // this value gets set to the static double in the cpp file

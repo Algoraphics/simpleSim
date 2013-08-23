@@ -13,14 +13,6 @@
 #define TUTORIAL_INC_SC_QUEUE_SIZE			1		// The Service Connection Manager's queue size (0 = infinite)
 #define SENSOR_COMPONENT				42
 
-//ethan do, i think we need a class here but I'm not sure how
-//class Interface
-//{
-//public:
-//	int numRecieved;
-//	void 
-//}
-
 OjCmpt TutorialComponent::create(std::string prettyName) {
 	OjCmpt result;
 	TutorialData *data = NULL;
@@ -36,29 +28,25 @@ OjCmpt TutorialComponent::create(std::string prettyName) {
 		std::cout << "Error starting controller...aborting." << std::endl;
 		return result;
 	} else {
-		//alex_do
-		//**************************
-		//initialize ROS
-		//**************************
-		//First spoof the comand line arguments to ROS
+//<ROS2JAUS>
+		//Spoof the comand line arguments to ROS
 		char **argw = (char**)malloc(sizeof(char*)*2);
 		char *str = (char*)malloc(sizeof(char)*strlen("tutorial"));
 		str = "tutorial";
 		argw[0] = str;
 		argw[1] = NULL;
 		int one = 1;
-		//
+
 		ros::init(one, argw, "bridge");
+
 		data = (TutorialData *)malloc(sizeof(TutorialData));
-		//ros::NodeHandle n;
+
 		data->nodeHandle = new ros::NodeHandle; 
-		//ros::Publisher chatter_pub = n.advertise<std_msgs::Int32>("chatter", 1000);
 		data->publisher = new ros::Publisher;
 		data->subscriber = new ros::Subscriber;
-		//ros::Publisher chatter_pub = data->nodeHandle->advertise<std_msgs::Int32>("chat", 1000);
-		*(data->publisher) = data->nodeHandle->advertise<std_msgs::Int32>("chat", 1000);
-		printf("Shit worked!\n");
 
+		*(data->publisher) = data->nodeHandle->advertise<std_msgs::Int32>("chat", 1000);
+//</ROS2JAUS>
 
 		// Register function callback for the process message state
 		ojCmptSetMessageProcessorCallback(result, TutorialComponent::processMessage);
@@ -75,24 +63,10 @@ OjCmpt TutorialComponent::create(std::string prettyName) {
 		// our address
 		tutorialAddr = ojCmptGetAddress(result);
 
-		//data = (TutorialData *)malloc(sizeof(TutorialData));
 		data->oneNumberMessage = oneNumberMessageCreate();
 		data->instance = tutorialAddr->instance;
 		data->limit = 50000;
 		data->running = JAUS_TRUE;
-		//alex_do
-		//This makes an error!!!!!!!
-		//data->nodeHandle = &n;
-		//data->nodeHandle->run();
-		//data->publisher = chatter_pub;
-
-		// double *a;
-		// a = new double[5];
-		// *a = 5;
-		// delete [] a;
-
-		// double b;
-		// b = new double;
 
 		ojCmptSetUserData(result, (void *)data);
 	}
@@ -103,12 +77,14 @@ OjCmpt TutorialComponent::create(std::string prettyName) {
 void TutorialComponent::run(OjCmpt cmpt) {
 	ojCmptRun(cmpt);
 	TutorialData* data = (TutorialData *)ojCmptGetUserData(cmpt);
+//<ROS2JAUS>
 	ROSComponent roscomp;
 	roscomp.data = data;
 	*(data->subscriber) = data->nodeHandle->subscribe<std_msgs::Int32>("chatter", 1000, &ROSComponent::chatterCallback, &roscomp);
 	while (data->running == JAUS_TRUE) {
 		// doing nothing...
 		ros::spinOnce();
+//</ROS2JAUS>
 		ojSleepMsec(100);
 	}
 }
@@ -161,7 +137,6 @@ void TutorialComponent::initState(OjCmpt cmpt) {
 
 void TutorialComponent::readyState(OjCmpt cmpt) {
 	//std::cout << "[READY]" << std::endl;
-	//TutorialData *data = (TutorialData *)ojCmptGetUserData(cmpt);
 }
 
 void TutorialComponent::standbyState(OjCmpt cmpt) {
@@ -210,8 +185,9 @@ void TutorialComponent::processMessage(OjCmpt cmpt, JausMessage msg) {
 	TutorialData *data = NULL;
 
 	data = (TutorialData *)ojCmptGetUserData(cmpt);
-	//alex_do
+//<ROS2JAUS>
 	std_msgs::Int32 rMsg;
+//</ROS2JAUS>
 
 	switch (msg->commandCode) {
 
@@ -219,10 +195,10 @@ void TutorialComponent::processMessage(OjCmpt cmpt, JausMessage msg) {
 			data->oneNumberMessage = oneNumberMessageFromJausMessage(msg);
 			std::cout << "One number received: " << data->oneNumberMessage->number << std::endl;
 
-			//alex_do
+//<ROS2JAUS>
 			rMsg.data = data->oneNumberMessage->number;
 			data->publisher->publish(rMsg);
-			//printf("processing a message\n");
+//</ROS2JAUS>
 
 			ojCmptSetState(cmpt, JAUS_STANDBY_STATE);
 			break;

@@ -55,7 +55,7 @@ OjCmpt TutorialComponent::create(std::string prettyName) {
 		std::cout << "Error starting controller...aborting." << std::endl;
 		return result;
 	} else {
-//</ROS2JAUS>
+//<ROS2JAUS>
 		//First spoof the comand line arguments to ROS
 		char **argw = (char**)malloc(sizeof(char*)*2);
 		char *str = new char[8];

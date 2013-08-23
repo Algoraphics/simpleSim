@@ -1,4 +1,4 @@
-# Author: Sean Whitsitt
+# Author: Ethan Rabb, based on a file by Sean Whitsitt
 # Starting from scratch since we're having trouble 
 # compiling on other computers.
 include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
