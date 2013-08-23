@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include
+END
+ThesisMessages_common.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/ThesisMessages_common.h
+END
+state.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/state.h
+END
+reportCurvatureMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/reportCurvatureMessage.h
+END
+velodyneDataSample.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/velodyneDataSample.h
+END
+motionCommand.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/motionCommand.h
+END
+velodyneDataMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/velodyneDataMessage.h
+END
+predictionMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/predictionMessage.h
+END
+verifyPathMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/verifyPathMessage.h
+END
+setMotionProfileMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/setMotionProfileMessage.h
+END
+common.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/common.h
+END
+wayPointRequestMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/wayPointRequestMessage.h
+END
+velodyneDataPoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/velodyneDataPoint.h
+END
+queryVelodyneDataMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/queryVelodyneDataMessage.h
+END
+wayPoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/include/wayPoint.h
+END

@@ -1,0 +1,13 @@
+float64 omega
+float64 delta_d
+int32 path_index
+float64 x
+float64 y
+float64 velocity
+float64 heading
+float64 tire_angle
+int32 flag
+---
+float64 omega
+float64 delta_d
+int32 path_index

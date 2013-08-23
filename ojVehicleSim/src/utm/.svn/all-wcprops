@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm
+END
+utmLib.c
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/utmLib.c
+END
+utmfor.c
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/utmfor.c
+END
+cproj.c
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/cproj.c
+END
+pointUtm.c
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/pointUtm.c
+END
+pointLla.c
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/pointLla.c
+END
+utminv.c
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/utminv.c
+END
+greatCircle.c
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/jms/catvehicle2013/!svn/ver/141/trunk/ROS2JAUS/simpleSim/ojVehicleSim/src/utm/greatCircle.c
+END

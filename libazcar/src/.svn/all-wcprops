@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src
+END
+wayPointRequestMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/wayPointRequestMessage.c
+END
+skeletonMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/skeletonMessage.c
+END
+velodyneDataPoint.c
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/velodyneDataPoint.c
+END
+queryVelodyneDataMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/queryVelodyneDataMessage.c
+END
+wayPoint.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/wayPoint.c
+END
+state.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/state.c
+END
+reportCurvatureMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/reportCurvatureMessage.c
+END
+velodyneDataSample.c
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/velodyneDataSample.c
+END
+motionCommand.c
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/motionCommand.c
+END
+velodyneDataMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/velodyneDataMessage.c
+END
+predictionMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/predictionMessage.c
+END
+verifyPathMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/verifyPathMessage.c
+END
+setMotionProfileMessage.c
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jms/catvehicle2013/!svn/ver/327/trunk/ROS2JAUS/simpleSim/libazcar/src/setMotionProfileMessage.c
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/jms/catvehicle2013/!svn/ver/221/trunk/ROS2JAUS/simpleSim/ojROSComfort/srv
+END
+steeringControl.srv
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jms/catvehicle2013/!svn/ver/221/trunk/ROS2JAUS/simpleSim/ojROSComfort/srv/steeringControl.srv
+END
+savePath.srv
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jms/catvehicle2013/!svn/ver/221/trunk/ROS2JAUS/simpleSim/ojROSComfort/srv/savePath.srv
+END
