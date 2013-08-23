@@ -44,6 +44,10 @@ tags like so: <ROS2JAUS>. Code outside of these tags was created by the writers 
 openJAUS or by Sean Whitsitt at the University of Arizona. The code within the tags
 was written by Ethan Rabb, with help from project partners Alex Warren and PJ Morley.
 
+The ROS2JAUS tags can be found in the ojTutorial, ojROSComfort, and ojGazeboBridge
+components. The ojGazebo bridge is the final working bridge and was almost completely
+custom-written for this project.
+
 Target Operating Environment:
 -----------------------------
 

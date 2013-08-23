@@ -37,20 +37,20 @@ OjCmpt VehicleController::create(std::string prettyName) {
 		return result;
 	} else {
 		data = (VcData *)malloc(sizeof(VcData));
-		//init ROS stuff
+//<ROS2JAUS>
 		printf("initializing ros input args\n");
 		char **argw = (char**)malloc(sizeof(char*)*2);
-		char *str = (char*)malloc(sizeof(char)*strlen("tutorial"));
-		//str = "tutorial";
+		char *str = (char*)malloc(sizeof(char)*strlen("tutorial"));=
 		argw[0] = str;
 		argw[1] = NULL;
 		int one = 1;
 		printf("initializing ros service\n");
 		ros::init(one, argw, "steering_control_client");
+
 		data->rosServiceNode = new ros::NodeHandle;
-		//data->rosPublishNode = new ros::NodeHandle;
 		data->rosPathClient = new ros::ServiceClient;
 		data->rosSteerClient = new ros::ServiceClient;
+//</ROS2JAUS>		
 		// this is the service we provide
 		ojCmptAddService(result, JAUS_EXPERIMENTAL_MOTION_PROFILE_DRIVER);
 		// these are the messages we can receive while providing this service
@@ -267,18 +267,22 @@ OjCmpt VehicleController::create(std::string prettyName) {
 		printf("outsize: %lf\n", (APPROX_PATH_LENGTH / PATH_STEP));
 		printf("outsize2: %lf\n", (50 / 0.01));
 
+//<ROS2JAUS>
 		//publish path to ros
 		beginner_tutorials::savePath srv;
+
 		for (int xdex = 0; xdex < (int)(APPROX_PATH_LENGTH / PATH_STEP); ++xdex) {
 			srv.request.path.data.push_back(data->path_x[xdex]);
 		}
-		//printf("actually sending x\n");
+
 		if (data->rosPathClient->call(srv)) {ROS_INFO("X Service call succeeded");}
 		else {ROS_INFO("X Service call succeeded");}
 		srv.request.path.data.clear();
+
 		for (int ydex = 0; ydex < (int)(APPROX_PATH_LENGTH / PATH_STEP); ++ydex) {
 			srv.request.path.data.push_back(data->path_y[ydex]);
 		}
+
 		if (data->rosPathClient->call(srv)) {ROS_INFO("X Service call succeeded");}
 		else {ROS_INFO("X Service call succeeded");}
 
@@ -290,7 +294,7 @@ OjCmpt VehicleController::create(std::string prettyName) {
 		save_data(test_filename, data->path_x, (int)APPROX_PATH_LENGTH / PATH_STEP);
 		strcpy(test_filename, "outputs/path_y_test2.txt");
 		save_data(test_filename, data->path_y, (int)APPROX_PATH_LENGTH / PATH_STEP);
-
+//<ROS2JAUS>
 		char lod_x_filename[100];
 		if (lod_type == LOD_PARKING_LOT) {
 			strcpy(lod_x_filename, "lod_pl_x.mat");
@@ -898,6 +902,7 @@ void VehicleController::processMessage(OjCmpt cmpt, JausMessage msg) {
 }
 
 void VehicleController::steering_controller(double *omega, double *delta_d, int *path_index, double x, double y, double velocity, double heading, double tire_angle, double *path_x, double *path_y, int flag, VcData *data) {
+//<ROS2JAUS>
 	beginner_tutorials::steeringControl srv;
 	srv.request.omega = *omega;
 	srv.request.delta_d = *delta_d;
@@ -917,6 +922,7 @@ void VehicleController::steering_controller(double *omega, double *delta_d, int 
 	else {
 		printf("failed somehow\n");
 	}
+//</ROS2JAUS>
 }
 
 double VehicleController::fromAngleToAngle(double from, double to) {

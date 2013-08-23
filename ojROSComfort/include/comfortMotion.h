@@ -88,11 +88,12 @@ typedef struct {
 	int vssReceived;
 	int wrenchReceived;
 
-	//ROS stuff
+//<ROS2JAUS>
 	ros::NodeHandle *rosServiceNode;
 	ros::ServiceClient *rosPathClient;
 	ros::ServiceClient *rosSteerClient;
 	ros::Publisher *rosPublisher;
+//</ROS2JAUS>
 
 	// vehicle state
 	double x_pos; // meters
