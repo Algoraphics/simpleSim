@@ -88,7 +88,7 @@ In general, JAUS executables can be run by navigating to the folder for the exec
 	(for example, navigating within the ojVehicleSim folder)
 and then typing the command "../build/[COMPONENT NAME]/[EXECUTABLE NAME]"
 	(for example, "../build/ojVehicleSim/ojVehicleSim" since in this case the component
-	and the executable have the same name)
+	 and the executable have the same name)
 
 There are three bridges that can be tested with the code available in this folder. To do
 this, you will generally need to run multiple components and nodes. I will outline those
